@@ -7,19 +7,42 @@
     <title>Vite App</title>
   </head>
   <body>
-    <header><h1>Alexandras Seriesökmotor</h1></header>
+    <header class="flex justify-center items-center h-[80px] bg-rose-400">
+      <h1
+        class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-green-300"
+      >
+        Alexandras Seriesökmotor
+      </h1>
+    </header>
 
-    <main class="w-screen">
-      <div class="container w-[600px]">
-        <label for="movieSearch"></label>
-        <input type="text" id="movieSearch" />
-        <button id="search">Sök</button>
+    <main
+      class="w-screen bg-gradient-to-r from-emerald-300 to-amber-300 flex flex-col justify-center items-center p-4"
+    >
+      <div
+        class="container w-[500px] h-[300px] shadow-2xl bg-gradient-to-r from-sky-300 to-green-300 flex flex-col gap-4 justify-center items-center"
+      >
+        <label
+          for="movieSearch"
+          class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-600 to-red-600"
+          >Sök på en serie</label
+        >
+        <input type="text" id="movieSearch" class="h-8" />
+        <button
+          id="search"
+          class="p-2 px-16 text-xl font-extrabold text-slate-100 bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:from-fuchsia-800 hover:to-blue-800 border-2 border-purple-900 rounded-lg"
+        >
+          Sök
+        </button>
       </div>
 
-      <div id="results" class="w-[500px]"></div>
+      <div id="results" class="w-[500px] bg-slate-300"></div>
     </main>
 
-    <footer>&copy; Copyright 2023</footer>
+    <footer
+      class="w-screen flex justify-center items-center h-14 bg-slate-300 fixed bottom-0"
+    >
+      &copy; Copyright 2023
+    </footer>
 
     <script type="module" src="./src/main.js"></script>
   </body>
