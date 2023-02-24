@@ -1,6 +1,21 @@
 import "./index.css";
 import { getSeries } from "./services";
 
+const addSearchText = () => {
+  const input = document.querySelector("#movieSearch")
+  const searchTerm = input.value
+  const seriesContainer = document.querySelector("#results");
+  seriesContainer.innerHTML = "";
+  createHtmlSeries(searchTerm, seriesContainer);
+
+}
+
+const init = () =>{
+  const button = document.querySelector("#search");
+  button.addEventListener("click", (addSearchText));
+}
+
+
 const createAnimation = () => {
   const heading = document.querySelector("h1");
   const button = document.querySelector("#search");
@@ -17,14 +32,13 @@ const createAnimation = () => {
 
 createAnimation();
 
-const createHtmlSeries = async () => {
-  const series = await getSeries("married at first sight");
-
+const createHtmlSeries = async (searchString, divContainer) => {
   const seriesContainer = document.querySelector("#results");
+  try{
+  const series = await getSeries(searchString, divContainer);
   for (let i=0; i<series.length; i++){
-    const createSerieContainer = document.createElement("div");
-
-    createSerieContainer.innerHTML = `
+    const divContainer = document.createElement("div");
+    divContainer.innerHTML = `
     <img class="serie-poster" src="${series[i].Poster}" alt="serie poster">
     <h2 class="serie-title">${series[i].Title}</h2>
     <p class="serie-year">${series[i].Year}</p>
@@ -32,8 +46,20 @@ const createHtmlSeries = async () => {
     <p class="serie-type">${series[i].Type}</p>
     <p class="serie-genres">${series[i].Genre}</p>
     `;
-    seriesContainer.appendChild(createSerieContainer);
-
+    seriesContainer.appendChild(divContainer);
+    const noMessage = document.querySelector("#no-result");
+    noMessage.innerHTML = "";
+  }
+}
+  catch {
+    displayNoResult(seriesContainer);
   }
 };
-createHtmlSeries();
+const displayNoResult = (container) => {
+  const noMessage = document.querySelector("#no-result");
+  noMessage.innerHTML = "";
+  noMessage.innerHTML = "Inga sökresultat att visa";
+
+  container.appendChild(noMessage);
+};
+init();
