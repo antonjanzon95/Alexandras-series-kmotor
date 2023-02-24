@@ -1,4 +1,5 @@
 import "./index.css";
+import movie from "./models/Movie";
 import { getSeries } from "./services";
 
 const createAnimation = () => {
@@ -34,4 +35,5 @@ const createHtmlSeries = async () => {
 
   }
 };
+
 createHtmlSeries();
