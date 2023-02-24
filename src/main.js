@@ -1,19 +1,5 @@
 import "./index.css";
-import movie from "./models/Movie";
 import { getSeries } from "./services";
-
-const addSearchText = () => {
-  const input = document.querySelector("#movieSearch")
-  const searchTerm = input.value
-  createHtmlSeries(searchTerm);
-
-}
-
-const init = () =>{
-  const button = document.querySelector("#search");
-  button.addEventListener("click", (addSearchText));
-}
-
 
 const createAnimation = () => {
   const heading = document.querySelector("h1");
@@ -31,8 +17,8 @@ const createAnimation = () => {
 
 createAnimation();
 
-const createHtmlSeries = async (searchString) => {
-  const series = await getSeries(searchString);
+const createHtmlSeries = async () => {
+  const series = await getSeries("married at first sight");
 
   const seriesContainer = document.querySelector("#results");
   for (let i=0; i<series.length; i++){
@@ -42,10 +28,12 @@ const createHtmlSeries = async (searchString) => {
     <img class="serie-poster" src="${series[i].Poster}" alt="serie poster">
     <h2 class="serie-title">${series[i].Title}</h2>
     <p class="serie-year">${series[i].Year}</p>
+    <p class="serie-rating">${series[i].Ratings}</p>
     <p class="serie-type">${series[i].Type}</p>
+    <p class="serie-genres">${series[i].Genre}</p>
     `;
     seriesContainer.appendChild(createSerieContainer);
 
   }
 };
-init();
+createHtmlSeries();
