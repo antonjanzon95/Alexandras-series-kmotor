@@ -32,9 +32,9 @@ const createAnimation = () => {
 createAnimation();
 
 const createHtmlSeries = async (searchString) => {
-  const series = await getSeries(searchString);
-
   const seriesContainer = document.querySelector("#results");
+  try{
+  const series = await getSeries(searchString);
   for (let i=0; i<series.length; i++){
     const createSerieContainer = document.createElement("div");
 
@@ -45,7 +45,19 @@ const createHtmlSeries = async (searchString) => {
     <p class="serie-type">${series[i].Type}</p>
     `;
     seriesContainer.appendChild(createSerieContainer);
-
+    const noMessage = document.querySelector("#no-result");
+    noMessage.innerHTML = "";
   }
+}
+  catch {
+    displayNoResult(seriesContainer);
+  }
+};
+const displayNoResult = (container) => {
+  const noMessage = document.querySelector("#no-result");
+  noMessage.innerHTML = "";
+  noMessage.innerHTML = "Inga sökresultat att visa";
+
+  container.appendChild(noMessage);
 };
 init();
