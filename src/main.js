@@ -37,14 +37,17 @@ const createHtmlSeries = async (searchString, divContainer) => {
   try{
   const series = await getSeries(searchString, divContainer);
   for (let i=0; i<series.length; i++){
-    const divContainer = document.createElement("div");
-    divContainer.innerHTML = `
-    <img class="serie-poster" src="${series[i].Poster}" alt="serie poster">
-    <h2 class="serie-title">${series[i].Title}</h2>
-    <p class="serie-year">${series[i].Year}</p>
-    <p class="serie-rating">${series[i].Ratings}</p>
-    <p class="serie-type">${series[i].Type}</p>
-    <p class="serie-genres">${series[i].Genre}</p>
+    const createSerieContainer = document.createElement("div");
+
+    createSerieContainer.innerHTML = `
+    <div class="cardContainer">
+      <img class="serie-poster" src="${series[i].Poster}" alt="serie poster">
+      <h2 class="serie-title">${series[i].Title}</h2>
+      <p class="serie-year">${series[i].Year}</p>
+      <p class="serie-rating">${series[i].Ratings}</p>
+      <p class="serie-type">${series[i].Type}</p>
+      <p class="serie-genres">${series[i].Genre}</p>
+    </div>
     `;
     seriesContainer.appendChild(divContainer);
     const noMessage = document.querySelector("#no-result");
