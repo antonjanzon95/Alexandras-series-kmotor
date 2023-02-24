@@ -4,7 +4,6 @@ class movie {
         this.Title;
         this.Year;
         this.Type;
-        this.Genre
     }
 };
 

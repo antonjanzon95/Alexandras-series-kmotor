@@ -4,7 +4,7 @@ import { getSeries } from "./services";
 
 const createAnimation = () => {
   const heading = document.querySelector("h1");
-  const button = document.querySelector("button");
+  const button = document.querySelector("#search");
   const searchText = document.querySelector("#movieSearch");
 
   gsap.to(heading, { y: "-20px", yoyo: true, repeat: -1, duration: 0.5 });
@@ -24,16 +24,17 @@ const createHtmlSeries = async () => {
   const seriesContainer = document.querySelector("#results");
   for (let i=0; i<series.length; i++){
     const createSerieContainer = document.createElement("div");
+
     createSerieContainer.innerHTML = `
     <img class="serie-poster" src="${series[i].Poster}" alt="serie poster">
     <h2 class="serie-title">${series[i].Title}</h2>
     <p class="serie-year">${series[i].Year}</p>
-    <p class="serie-rating">${series[i].Type}</p>
+    <p class="serie-rating">${series[i].Ratings}</p>
+    <p class="serie-type">${series[i].Type}</p>
     <p class="serie-genres">${series[i].Genre}</p>
     `;
     seriesContainer.appendChild(createSerieContainer);
 
   }
 };
-
 createHtmlSeries();
